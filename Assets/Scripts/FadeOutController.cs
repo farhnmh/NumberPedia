@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FadeOutController : MonoBehaviour
 {
-    [SerializeField] GameObject image;
+    [SerializeField] List<GameObject> image;
     public float decreaseIndex;
     public float delayOnAwake;
     public float delayOnProcess;
@@ -25,18 +25,19 @@ public class FadeOutController : MonoBehaviour
 
     IEnumerator FadingOut()
     {
-        var tempAlpha = image.GetComponent<Image>().color;
-        tempAlpha.a -= decreaseIndex;
-        image.GetComponent<Image>().color = tempAlpha;
+        for (int i = 0; i <= image.Count - 1; i++) {
+            var tempAlpha = image[i].GetComponent<Image>().color;
+            tempAlpha.a -= decreaseIndex;
+            image[i].GetComponent<Image>().color = tempAlpha;
 
-        yield return new WaitForSeconds(delayOnProcess);
-
-        if (tempAlpha.a < 0)
-        {
-            Destroy(image);
-            Destroy(this);
+            if (tempAlpha.a < 0)
+            {
+                Destroy(image[i]);
+                Destroy(this);
+            }
         }
 
+        yield return new WaitForSeconds(delayOnProcess);
         StartCoroutine(FadingOut());
     }
 }
