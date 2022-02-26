@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "377175818440",
+    "firebase_url": "https://numberpedia-d5616-default-rtdb.firebaseio.com",
+    "project_id": "numberpedia-d5616",
+    "storage_bucket": "numberpedia-d5616.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377175818440:android:22b71efa01bc0b5b66a5fd",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.NumberPedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377175818440-ojph7767m6clmmrcbgpo65358tk9p38s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_leNas_aAgT9zT31mQEwxMS6dx_3uvqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377175818440-ojph7767m6clmmrcbgpo65358tk9p38s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
