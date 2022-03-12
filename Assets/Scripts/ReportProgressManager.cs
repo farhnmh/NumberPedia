@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,9 +25,6 @@ public class ReportProgressManager : MonoBehaviour
     {
         userManager = GameObject.Find("ImportantHandler").GetComponent<UserManager>();
         dbManager = GameObject.Find("ImportantHandler").GetComponent<DatabaseManager>();
-
-        dbManager.GetCheckpoint();
-        dbManager.GetHistory();
     }
 
     // Update is called once per frame
@@ -60,10 +58,13 @@ public class ReportProgressManager : MonoBehaviour
             levelValue--;
     }
 
+    public void RefreshHistory()
+    {
+        dbManager.GetHistory();
+    }
+
     public void UpdateHistory()
     {
-        print($"Updating Report On Stage-{stageValue} Level-{levelValue}");
-
         for (int a = 0; a <= 26; a++)
         {
             if (userManager.historyDetail[a].stage == stageValue &&

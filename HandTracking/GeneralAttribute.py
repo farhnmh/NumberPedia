@@ -1,3 +1,4 @@
-posX = 0
-posY = 0
+from turtle import position
+
+positionHand = ""
 isRun = True

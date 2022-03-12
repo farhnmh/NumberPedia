@@ -3272,7 +3272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0568298242af7f40acc0dea04a9ba14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 782636894}
+  image:
+  - {fileID: 782636894}
   decreaseIndex: 0.1
   delayOnAwake: 1
   delayOnProcess: 0.05

@@ -1,9 +1,9 @@
 import time, cv2, pyautogui, mediapipe as mp
-import XMLGenerator, HandPositionSender, GeneralAttribute, time, threading
+import HandPositionSender, GeneralAttribute, time, threading
 
 def start_webcam():
-    thread_sender = threading.Thread(target=HandPositionSender.SendPosition)
-    thread_sender.start()
+    #thread_sender = threading.Thread(target=HandPositionSender.SendPosition)
+    #thread_sender.start()
 
     widthScreen, heightScreen= pyautogui.size()
     winName = 'NumberPedia-HandTracking'
@@ -11,7 +11,7 @@ def start_webcam():
     mp_drawing = mp.solutions.drawing_utils
     mp_hands = mp.solutions.hands
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     cap.set(3, 1280)
     cap.set(4, 720)
 
@@ -29,7 +29,7 @@ def start_webcam():
             heightImage, widthImage, channelImage = image.shape
 
             if results.multi_hand_landmarks:
-                for hand_landmarks in results.multi_hand_landmarks:
+                for index, hand_landmarks in enumerate(results.multi_hand_landmarks):
                     hand_x = int(hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * widthImage)
                     hand_y = int(hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * heightImage)
                     
@@ -38,15 +38,16 @@ def start_webcam():
                         mp_drawing.DrawingSpec(color=(255, 255, 255))
                     )
 
-                    GeneralAttribute.posX = hand_x
-                    GeneralAttribute.posY = hand_y
-                    #XMLGenerator.GenerateXML(hand_x, hand_y)
+
+
+                    #GeneralAttribute.posX[index] = hand_x
+                    #GeneralAttribute.posY[index] = hand_y
 
             end = time.time()
             totalTime = end - start
             fps = 1 / totalTime
 
-            cv2.putText(image, f'FPS: {int(fps)}', (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 2)
+            cv2.putText(image, f'FPS: {int(fps)}', (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             cv2.imshow(winName, image)
             cv2.moveWindow(winName, int(widthScreen / 2 - 640), int(heightScreen / 2 - 360))
 

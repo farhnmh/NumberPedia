@@ -8,16 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/0-Android-SignValidation.unity
     guid: ad28fee72c886fa49a1a0b211a827f2e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/0-Windows-SignValidation.unity
     guid: e6c48e1530f176640a3b8b9685dbdd2a
   - enabled: 1
     path: Assets/Scenes/1-Android-MainMenu.unity
     guid: 5f96746adc7833e4798d6dc95b9443d8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/1-Windows-MainMenu.unity
     guid: ccb549ae4e5d12e4980e505b441c1d2f
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+  - enabled: 1
+    path: Assets/Scenes/2-Windows-HandTracking.unity
+    guid: 3719ed66d1be0164494101d4ddce878e
+  - enabled: 1
+    path: Assets/Scenes/3-Windows-Level1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

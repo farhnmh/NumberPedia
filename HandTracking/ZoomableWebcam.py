@@ -1,9 +1,9 @@
 import cv2
 
 def show_webcam(mirror=False):
-    scale=10
+    scale=20
 
-    cam = cv2.VideoCapture(1)
+    cam = cv2.VideoCapture(0)
     while True:
         ret_val, image = cam.read()
         if mirror: 
@@ -25,20 +25,12 @@ def show_webcam(mirror=False):
 
         cv2.imshow('my webcam', resized_cropped)
         if cv2.waitKey(1) == 27: 
-            break 
-        
-        if cv2.waitKey(1) == 45: 
-            scale += 5  # +5
-
-        if cv2.waitKey(1) == 43: 
-            scale -= 5  # +5
+            break
 
     cv2.destroyAllWindows()
 
-
 def main():
     show_webcam(mirror=True)
-
 
 if __name__ == '__main__':
     main()

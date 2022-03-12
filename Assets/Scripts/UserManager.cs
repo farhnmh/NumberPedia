@@ -10,6 +10,13 @@ public class UserManager : MonoBehaviour
     public int age;
 
     [Serializable]
+    public class playing
+    {
+        public int stage;
+        public int level;
+    }
+
+    [Serializable]
     public class checkpoint
     {
         public int stage;
@@ -28,6 +35,7 @@ public class UserManager : MonoBehaviour
         public string wrongAnswer;
     }
 
+    [SerializeField] public playing currentlyPlayingDetail;
     [SerializeField] public checkpoint checkpointDetail;
     [SerializeField] public history[] historyDetail;
 }

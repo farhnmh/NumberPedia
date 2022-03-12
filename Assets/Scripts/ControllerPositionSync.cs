@@ -25,12 +25,12 @@ public class ControllerPositionSync : MonoBehaviour
 
     void HandTracking()
     {
-        float maxX = 0.0140625f;
-        float maxY = -0.01388888888f;
+        //float maxX = 0.0140625f;
+        //float maxY = -0.01388888888f;
 
-        float posX = Convert.ToInt32(hands.rightHand[0]) * maxX;
-        float posY = Convert.ToInt32(hands.rightHand[1]) * maxY;
-        transform.position = new Vector2(posX, posY);
+        //float posX = Convert.ToInt32(hands.rightHand[0]) * maxX;
+        //float posY = Convert.ToInt32(hands.rightHand[1]) * maxY;
+        //transform.position = new Vector2(posX, posY);
     }
 
     void MouseTracking()

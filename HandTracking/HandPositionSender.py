@@ -12,16 +12,11 @@ def SendPosition():
     print("Thread Sender Started")
     
     while GeneralAttribute.isRun == True:
-        time.sleep(0.10)
-
-        #x = random.randint(0, 1280)
-        #y = random.randint(0, 720)
-        
-        position = f"{GeneralAttribute.posX},{GeneralAttribute.posY}"
-        bytesToSend = str.encode(position)
+        time.sleep(0.05)
+        bytesToSend = str.encode(GeneralAttribute.positionHand)
 
         # Send to server using created UDP socket
         UDPClientSocket.sendto(bytesToSend, serverAddressPort)
-        print(f"Sending {position}")
+        print(f"Sending {GeneralAttribute.positionHand}")
 
     print("Thread Sender Killed")
