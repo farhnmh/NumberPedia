@@ -8,7 +8,6 @@ public class SignValidation : MonoBehaviour
 {
     public TextMeshProUGUI notification;
     public string notifTemp;
-    public string mainMenuScene;
     public bool isLogin;
 
     DatabaseManager dbManager;
@@ -31,7 +30,7 @@ public class SignValidation : MonoBehaviour
     {
         notification.text = notifTemp;
         if (isLogin)
-            Common.CommonFunction.MoveToScene(mainMenuScene);
+            Common.CommonFunction.MoveToScene("1-Windows-MainMenu");
     }
 
     public void SignInRequest()

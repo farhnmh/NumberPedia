@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class UserManager : MonoBehaviour
 {
+    public bool isInitiating;
+    public bool isTracking;
     public string fullName;
     public string schoolName;
     public int age;

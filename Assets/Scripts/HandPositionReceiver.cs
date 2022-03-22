@@ -18,11 +18,15 @@ public class HandPositionReceiver : MonoBehaviour
         public int posY;
     }
 
+    public UserManager userManager;
+
     [Header("Controller Attribute")]
     public bool isTracking;
     public int totalHandDetected;
     public float maxX = 0.0140625f;
     public float maxY = -0.01388888888f;
+    public GameObject cursor;
+    public GameObject hands;
     [SerializeField] public HandData[] handPosition;
 
     [Header("Receiver Attribute")]
@@ -47,15 +51,35 @@ public class HandPositionReceiver : MonoBehaviour
         ipep = new IPEndPoint(IPAddress.Any, port);
         newSock = new UdpClient(ipep);
         sender = new IPEndPoint(IPAddress.Any, 0);
+
+        userManager = GameObject.Find("ImportantHandler").GetComponent<UserManager>();
+        isTracking = userManager.isTracking;
+
+        if (!isTracking)
+        {
+            cursor.SetActive(true);
+            hands.SetActive(false);
+        }
+        else
+        {
+            cursor.SetActive(false);
+            hands.SetActive(true);
+        }
     }
 
     void Update()
     {
         ReceiveData();
-        totalHandDetected = Convert.ToInt32(dataSplitted[0]);
-
         if (isTracking)
-            HandTracking();
+        {
+            if (dataString != "")
+            {
+                totalHandDetected = Convert.ToInt32(dataSplitted[0]);
+                HandTracking();
+            }
+            else
+                print("No hand to detect");
+        }
         else
             MouseTracking();
     }
@@ -67,10 +91,6 @@ public class HandPositionReceiver : MonoBehaviour
             receivedData = newSock.Receive(ref sender);
             dataString = Encoding.ASCII.GetString(receivedData);
             dataSplitted = dataString.Split(',');
-        }
-        else
-        {
-            //print("No data to receive");
         }
     }
 
@@ -146,6 +166,6 @@ public class HandPositionReceiver : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
-        transform.position = mousePosition;
+        cursor.transform.position = mousePosition;
     }
 }
