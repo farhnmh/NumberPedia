@@ -1,5 +1,5 @@
 import time, cv2, pyautogui, mediapipe as mp
-import HandPositionSender, GeneralAttribute, time, threading
+import UDPDataSender, GeneralAttribute, time, threading
 
 def start_webcam():
     #thread_sender = threading.Thread(target=HandPositionSender.SendPosition)
@@ -38,11 +38,6 @@ def start_webcam():
                         mp_drawing.DrawingSpec(color=(255, 255, 255))
                     )
 
-
-
-                    #GeneralAttribute.posX[index] = hand_x
-                    #GeneralAttribute.posY[index] = hand_y
-
             end = time.time()
             totalTime = end - start
             fps = 1 / totalTime
@@ -51,7 +46,6 @@ def start_webcam():
             cv2.imshow(winName, image)
             cv2.moveWindow(winName, int(widthScreen / 2 - 640), int(heightScreen / 2 - 360))
 
-            #if cv2.waitKey(1) & 0xFF == ord('q'):
             if cv2.waitKey(1) == 27:
                 break
 
