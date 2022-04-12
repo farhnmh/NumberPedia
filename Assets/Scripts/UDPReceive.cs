@@ -10,7 +10,6 @@ public class UDPReceive : MonoBehaviour
     Thread receiveThread;
     UdpClient client;
 
-    public bool isTracking;
     public int port = 5053;
     public string packetReceived;
     public GameManager gameManager;
@@ -31,7 +30,7 @@ public class UDPReceive : MonoBehaviour
         {
             try
             {
-                if (isTracking)
+                if (gameManager.isTracking)
                 {
                     IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
                     byte[] dataByte = client.Receive(ref anyIP);

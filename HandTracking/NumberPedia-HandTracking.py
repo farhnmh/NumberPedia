@@ -23,10 +23,10 @@ def StartExWebcam(index):
     if int(trackingType.get()) == 1:
         HandVisualizing()
     elif int(trackingType.get()) == 2:
-        BallColorVisualizing()
-        #webcamStatus = False
-        #exWebcamButton(True)
-        #SetupNotification("Ball Tracking Feature Still Under Maintenance!", 130)
+        #BallColorVisualizing()
+        webcamStatus = False
+        exWebcamButton(True)
+        SetupNotification("Ball Tracking Feature Still Under Maintenance!", 130)
 
 def ValidationInputExWebcam():
     global webcamStatus
@@ -203,8 +203,8 @@ def HandVisualizing():
     
     SetupNotification("Your Camera Opened. Setup It and Launch The Game!", 100)
     GeneralAttribute.isRun = True
-    #thread_sender = threading.Thread(target=UDPDataSender.SendingPacket)
-    #thread_sender.start()
+    thread_sender = threading.Thread(target=UDPDataSender.SendingPacket)
+    thread_sender.start()
 
     widthScreen, heightScreen = pyautogui.size()
     winName = 'NumberPedia-HandTracking'
@@ -292,7 +292,7 @@ def HandVisualizing():
                     for char in disallowed_characters:
                         GeneralAttribute.positionHand = GeneralAttribute.positionHand.replace(char, "")
 
-                sock.sendto(str.encode(str(GeneralAttribute.positionHand)), serverAddressPort)
+                #sock.sendto(str.encode(str(GeneralAttribute.positionHand)), serverAddressPort)
                 
         else:
             GeneralAttribute.positionHand = ""
@@ -330,8 +330,8 @@ webcamStatus = False
 list_cam = list()
 GetListWebcam()
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-serverAddressPort = ("127.0.0.1", 5053)
+#sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+#serverAddressPort = ("127.0.0.1", 5053)
 
 root = Tk()
 root.title("NumberPedia")
