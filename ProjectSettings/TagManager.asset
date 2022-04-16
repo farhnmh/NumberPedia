@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hand
   - Interactable
+  - Checkpoint
+  - DrawingHand
   layers:
   - Default
   - TransparentFX

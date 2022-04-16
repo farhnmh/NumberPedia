@@ -6,20 +6,22 @@ using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UDPDataReceiver : MonoBehaviour
 {
     public int portNum = 22222;
     public bool isTracking;
     public string packetReceived;
-    public GameManager gameManager;
+    public ControlManager controlManager;
+    public TextMeshProUGUI detailText;
 
     static Thread receiverThread;
     static UdpClient udpClient;
 
     private void Start()
     {
-        gameManager = GameObject.Find("Background Script").GetComponent<GameManager>();
+        controlManager = GameObject.Find("Background Script").GetComponent<ControlManager>();
         udpClient = new UdpClient(portNum);
 
         if (isTracking)
@@ -31,7 +33,7 @@ public class UDPDataReceiver : MonoBehaviour
 
     void UDPReceiver()
     {
-        print("Receiver Thread Opened");
+        detailText.text = "Receiver Thread Opened";
         while (true)
         {
             if (isTracking)
@@ -42,11 +44,11 @@ public class UDPDataReceiver : MonoBehaviour
 
                 if (packetReceived != "")
                 {
-                    gameManager.dataSplitted = packetReceived.Split(',');
-                    gameManager.totalHand = Convert.ToInt32(gameManager.dataSplitted[0]);
+                    controlManager.dataSplitted = packetReceived.Split(',');
+                    controlManager.totalHand = Convert.ToInt32(controlManager.dataSplitted[0]);
                 }
                 else
-                    gameManager.totalHand = 0;
+                    controlManager.totalHand = 0;
             }
         }
     }
