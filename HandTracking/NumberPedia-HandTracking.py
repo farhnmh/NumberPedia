@@ -336,6 +336,7 @@ GetListWebcam()
 root = Tk()
 root.title("NumberPedia")
 root.geometry("550x350")
+root.resizable(0, 0)
 
 #import gui
 img_logoNumberPedia = PhotoImage(file='Assets/ico_logo.png')

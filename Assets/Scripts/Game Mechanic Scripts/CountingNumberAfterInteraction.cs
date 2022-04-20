@@ -16,6 +16,7 @@ public class CountingNumberAfterInteraction : MonoBehaviour
     public float moveSpeed;
     public float fadeSpeed;
     public float delaySpeed;
+    public Animator animator;
     public List<GameObject> objectInteract;
     public List<Transform> transformInteract;
     public List<GameObject> numberTarget;
@@ -32,11 +33,6 @@ public class CountingNumberAfterInteraction : MonoBehaviour
                 objectInteract[1].SetActive(true);
 
                 levelManager.numberIndex++;
-                if (levelManager.numberTarget == levelManager.numberIndex)
-                {
-                    levelManager.countingGroupAnimator.SetTrigger("isDone");
-                    levelManager.drawingGroup.SetActive(true);
-                }
 
                 isDone = true;
                 isChosen = false;
@@ -44,11 +40,18 @@ public class CountingNumberAfterInteraction : MonoBehaviour
         }
         else if (isDone)
         {
+            animator.SetTrigger("isReady");
             numberTarget[number].SetActive(true);
             StartCoroutine(FadeOut(numberTarget[number]));
             numberTarget[number].transform.position = Vector3.MoveTowards(numberTarget[number].transform.position,
                                                                      transformInteract[1].position,
                                                                      moveSpeed * Time.deltaTime);
+        }
+
+        if (levelManager.numberTarget == levelManager.numberIndex)
+        {
+            animator.SetTrigger("isDone");
+            levelManager.drawingGroup.SetActive(true);
         }
     }
 

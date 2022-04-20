@@ -6,6 +6,7 @@ public class DrawingNumberAfterInteraction : MonoBehaviour
 {
     public bool isChosen;
     public bool isDone;
+    public AudioSource audioSource;
     public CountingAndDrawingManager levelManager;
     public HandController hand;
 
@@ -32,6 +33,7 @@ public class DrawingNumberAfterInteraction : MonoBehaviour
 
         if (collision.CompareTag("Checkpoint"))
         {
+            audioSource.Play();
             levelManager.checkpointObject[0].SetActive(false);
             levelManager.checkpointObject.RemoveAt(0);
 

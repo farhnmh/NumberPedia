@@ -15,12 +15,9 @@ public class CountingAndDrawingManager : MonoBehaviour
     public float delaySpeed;
     public Vector3 scaleFactor;
     public GameObject countingGroup;
-    public Animator countingGroupAnimator;
 
     [Header("Drawing Attribute")]
     public bool isDrawing;
-    public int checkpointTarget;
-    public int checkpointIndex;
     public GameObject hint;
     public GameObject drawingGroup;
     public Animator drawingGroupAnimator;

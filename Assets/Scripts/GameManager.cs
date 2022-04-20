@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
                         levelGroup[i].transform.position = Vector3.MoveTowards(levelGroup[i].transform.position,
                                                                            transformTarget[0].position,
                                                                            moveSpeed * Time.deltaTime);
+
+                        if (levelGroup[i].transform.position == transformTarget[0].position)
+                            levelGroup[i].SetActive(false);
                     }
                     else if (i + 1 == levelIndex)
                     {

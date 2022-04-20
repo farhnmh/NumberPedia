@@ -11,45 +11,44 @@ using TMPro;
 public class UDPDataReceiver : MonoBehaviour
 {
     public int portNum = 22222;
-    public bool isTracking;
     public string packetReceived;
     public ControlManager controlManager;
     public TextMeshProUGUI detailText;
 
+    string notification;
     static Thread receiverThread;
     static UdpClient udpClient;
 
-    private void Start()
+    void Awake()
     {
         controlManager = GameObject.Find("Background Script").GetComponent<ControlManager>();
         udpClient = new UdpClient(portNum);
 
-        if (isTracking)
-        {
-            receiverThread = new Thread(UDPReceiver);
-            receiverThread.Start();
-        }
+        receiverThread = new Thread(UDPReceiver);
+        receiverThread.Start();
+    }
+
+    void Update()
+    {
+        detailText.text = notification;
     }
 
     void UDPReceiver()
     {
-        detailText.text = "Receiver Thread Opened";
+        notification = "Receiver Thread Opened";
         while (true)
         {
-            if (isTracking)
-            {
-                IPEndPoint remoteEP = null;
-                byte[] data = udpClient.Receive(ref remoteEP);
-                packetReceived = Encoding.ASCII.GetString(data);
+            IPEndPoint remoteEP = null;
+            byte[] data = udpClient.Receive(ref remoteEP);
+            packetReceived = Encoding.ASCII.GetString(data);
 
-                if (packetReceived != "")
-                {
-                    controlManager.dataSplitted = packetReceived.Split(',');
-                    controlManager.totalHand = Convert.ToInt32(controlManager.dataSplitted[0]);
-                }
-                else
-                    controlManager.totalHand = 0;
+            if (packetReceived != "")
+            {
+                controlManager.dataSplitted = packetReceived.Split(',');
+                controlManager.totalHand = Convert.ToInt32(controlManager.dataSplitted[0]);
             }
+            else
+                controlManager.totalHand = 0;
         }
     }
 }
