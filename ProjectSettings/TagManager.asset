@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - Checkpoint
   - DrawingHand
+  - LogTarget
   layers:
   - Default
   - TransparentFX

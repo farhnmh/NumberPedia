@@ -19,7 +19,7 @@ public class ControlManager : MonoBehaviour
     public string[] dataSplitted;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isTracking)
         {
@@ -40,9 +40,10 @@ public class ControlManager : MonoBehaviour
 
     void MouseTracking()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0;
-        cursor.transform.position = mousePosition;
+        Vector3 mousePos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                                       Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
+                                       Mathf.Clamp01(0));
+        cursor.transform.position = mousePos;
     }
 
     void HandAttibuteSetter()
