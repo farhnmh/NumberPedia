@@ -19,7 +19,7 @@ public class UDPDataReceiver : MonoBehaviour
     static Thread receiverThread;
     static UdpClient udpClient;
 
-    void Awake()
+    void Start()
     {
         controlManager = GameObject.Find("Background Script").GetComponent<ControlManager>();
         udpClient = new UdpClient(portNum);
