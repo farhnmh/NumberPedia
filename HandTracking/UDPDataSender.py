@@ -2,7 +2,7 @@ import time, random, socket
 import GeneralAttribute
 
 UDP_IP_ADDRESS = "127.0.0.1"
-UDP_PORT_NO = 22222
+UDP_PORT_NO = 8080
 
 def SendingPacket():
     print("Thread Sender Opened")

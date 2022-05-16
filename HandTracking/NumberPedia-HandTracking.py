@@ -44,6 +44,9 @@ def ScaleSetting(x):
     global scaleSet
     scaleSet = -x
 
+def BrigtnessSetting(x):
+    print(x)
+
 def BallCircleVisualizing():
     global cap, scaleSet, webcamStatus
     
@@ -221,6 +224,8 @@ def HandVisualizing():
     cv2.setTrackbarMin('Zoom Scalling', winName, -50)
     cv2.setTrackbarMax('Zoom Scalling', winName, -1)
     cv2.setTrackbarPos('Zoom Scalling', winName, -50)
+
+    cv2.createTrackbar('Brightness Adjustment', winName, 0, 100, BrigtnessSetting)
 
     while True:
         totalHand = 0

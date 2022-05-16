@@ -218,7 +218,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2116837912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StageSelectionManager, Assembly-CSharp
         m_MethodName: ChooseStage
         m_Mode: 3
@@ -541,6 +541,7 @@ RectTransform:
   - {fileID: 1067083558}
   - {fileID: 118893646}
   - {fileID: 1317756285}
+  - {fileID: 664653688}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -853,7 +854,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2116837912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StageSelectionManager, Assembly-CSharp
         m_MethodName: ChooseStage
         m_Mode: 3
@@ -2260,7 +2261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &585431144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2677,7 +2678,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2116837912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StageSelectionManager, Assembly-CSharp
         m_MethodName: UpdateCheckpoint
         m_Mode: 1
@@ -2689,16 +2690,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2116837911}
-        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: SetupPanelIndex
-        m_Mode: 3
+      - m_Target: {fileID: 2116837914}
+        m_TargetAssemblyTypeName: FadeOutController, Assembly-CSharp
+        m_MethodName: FadingForMoveScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 1-Windows-StageLevelSelection
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &611222727
@@ -2909,6 +2910,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636721093}
+  m_CullTransparentMesh: 1
+--- !u!1 &664653687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664653688}
+  - component: {fileID: 664653690}
+  - component: {fileID: 664653689}
+  m_Layer: 5
+  m_Name: BlackScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &664653688
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664653687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 58675875}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000091553, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &664653689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664653687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.95294124, b: 0.85098046, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &664653690
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664653687}
   m_CullTransparentMesh: 1
 --- !u!1 &731938101
 GameObject:
@@ -3341,7 +3417,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2116837912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StageSelectionManager, Assembly-CSharp
         m_MethodName: ChooseStage
         m_Mode: 3
@@ -3971,7 +4047,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2116837912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StageSelectionManager, Assembly-CSharp
         m_MethodName: ChooseLevel
         m_Mode: 3
@@ -5084,7 +5160,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2116837912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StageSelectionManager, Assembly-CSharp
         m_MethodName: ChooseLevel
         m_Mode: 3
@@ -8181,7 +8257,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2116837912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StageSelectionManager, Assembly-CSharp
         m_MethodName: ChooseStage
         m_Mode: 3
@@ -9133,7 +9209,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2116837912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StageSelectionManager, Assembly-CSharp
         m_MethodName: ChooseLevel
         m_Mode: 3
@@ -9753,7 +9829,7 @@ GameObject:
   - component: {fileID: 2116837909}
   - component: {fileID: 2116837911}
   - component: {fileID: 2116837910}
-  - component: {fileID: 2116837912}
+  - component: {fileID: 2116837914}
   - component: {fileID: 2116837913}
   m_Layer: 0
   m_Name: MenuManager
@@ -9846,56 +9922,6 @@ MonoBehaviour:
   targetPosition:
   - {fileID: 487091514}
   - {fileID: 781295549}
---- !u!114 &2116837912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116837907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d27519f077f2a3846b450a91dfd0fc94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userManager: {fileID: 0}
-  dbManager: {fileID: 0}
-  levelSelectionPanel: {fileID: 1652105818}
-  levelSelection: {fileID: 2104819713}
-  stageButton:
-  - {fileID: 15749762}
-  - {fileID: 747576629}
-  - {fileID: 1783022639}
-  levelButton:
-  - {fileID: 2076130756}
-  - {fileID: 844273894}
-  - {fileID: 1026450058}
-  levelSelectionSprite:
-  - {fileID: 21300000, guid: 127332bd73b8ebb42af82134f68c729d, type: 3}
-  - {fileID: 21300000, guid: b0f77c7a92d53b043adc85242dba947b, type: 3}
-  - {fileID: 21300000, guid: cc76c83804df1e84e93647694038236f, type: 3}
-  stageButtonOn:
-  - {fileID: 21300000, guid: eeab06e22fe522e45b75c145f821f482, type: 3}
-  - {fileID: 21300000, guid: f7487802384d15b46b5c0a53f40b124b, type: 3}
-  - {fileID: 21300000, guid: b7a1167d96fa06c4ea503b6ab88b75c3, type: 3}
-  levelButtonOn:
-  - {fileID: 21300000, guid: 9d7b5bfdfa111304da2cb01f829caad5, type: 3}
-  - {fileID: 21300000, guid: b0560e3f5948cbc4c9403ad646be9709, type: 3}
-  - {fileID: 21300000, guid: a3cbcac4755475045b78607c1b1de070, type: 3}
-  stageButtonOff:
-  - {fileID: 21300000, guid: 0a306e37874d1484d88e34c6b93dc863, type: 3}
-  - {fileID: 21300000, guid: 46280a2cda1ebea489b83c8be6a315a3, type: 3}
-  - {fileID: 21300000, guid: 381a1fd61a22e2f4c870ba03a27ca7bc, type: 3}
-  levelButtonOff:
-  - {fileID: 21300000, guid: ac7ca39bebf511d458e12aa94e8c8830, type: 3}
-  - {fileID: 21300000, guid: fe1f94a953ba483418880d288fa1221a, type: 3}
-  - {fileID: 21300000, guid: 81f62987400cb8a409828ef19d92cdc4, type: 3}
-  charMoveSpeed: 30
-  character: {fileID: 1605162048}
-  charTargetPosition:
-  - {fileID: 913102034}
-  - {fileID: 1098603421}
-  - {fileID: 779777101}
 --- !u!82 &2116837913
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9992,3 +10018,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2116837914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116837907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0568298242af7f40acc0dea04a9ba14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeIn: 1
+  fadeOut: 0
+  image: {fileID: 664653687}
+  increaseDecreaseIndex: 0.1
+  delayOnAwake: 0
+  delayOnProcess: 0.05
+  playOnStart: 0
+  sceneTarget: 
+  fadingForNextScene: 1

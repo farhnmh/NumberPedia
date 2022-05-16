@@ -10,7 +10,7 @@ using TMPro;
 
 public class UDPDataReceiver : MonoBehaviour
 {
-    public int portNum = 22222;
+    public int portNum;
     public string packetReceived;
     public ControlManager controlManager;
     public TextMeshProUGUI detailText;
@@ -19,7 +19,7 @@ public class UDPDataReceiver : MonoBehaviour
     static Thread receiverThread;
     static UdpClient udpClient;
 
-    void Start()
+    void Awake()
     {
         controlManager = GameObject.Find("Background Script").GetComponent<ControlManager>();
         udpClient = new UdpClient(portNum);
@@ -28,10 +28,22 @@ public class UDPDataReceiver : MonoBehaviour
         receiverThread.Start();
     }
 
+    void Start()
+    {
+        
+    }
+
     void Update()
     {
         detailText.text = notification;
     }
+
+#if UNITY_EDITOR
+    void OnApplicationQuit()
+    {
+        receiverThread.Abort();
+    }
+#endif
 
     void UDPReceiver()
     {

@@ -17,7 +17,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/1-Windows-MainMenu.unity
     guid: ccb549ae4e5d12e4980e505b441c1d2f
+  - enabled: 0
+    path: Assets/Scenes/1-Windows-StageLevelSelection.unity
+    guid: 0df9055cf22205747aa250cbe12cd072
   - enabled: 1
+    path: Assets/Scenes/2-Windows-Level2.unity
+    guid: 7a62843947a1ab24da77e3e178c0f115
+  - enabled: 0
     path: Assets/Scenes/2-Windows-Stage1-Level1.unity
     guid: 05d93d967adc6254b955d6c428e61441
+  - enabled: 0
+    path: Assets/Scenes/2-Windows-Stage1-Level2.unity
+    guid: 2174aea2966728e4cbfad1ebbf6497c2
   m_configObjects: {}

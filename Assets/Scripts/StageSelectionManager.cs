@@ -6,99 +6,53 @@ using TMPro;
 
 public class StageSelectionManager : MonoBehaviour
 {
-    public UserManager userManager;
-    public DatabaseManager dbManager;
+    public int stageIndex;
+    public float moveSpeed;
+    public List<GameObject> buttonChanger;
+    public List<Transform> transformTarget;
+    public List<GameObject> stageGroup;
 
-    public GameObject levelSelectionPanel;
-    public GameObject levelSelection;
-    public List<GameObject> stageButton;
-    public List<GameObject> levelButton;
-
-    [Header("Image Attribute")]
-    public List<Sprite> levelSelectionSprite;
-    public List<Sprite> stageButtonOn;
-    public List<Sprite> levelButtonOn;
-    public List<Sprite> stageButtonOff;
-    public List<Sprite> levelButtonOff;
-
-    [Header("Character Attribute")]
-    public float charMoveSpeed;
-    public GameObject character;
-    public List<Transform> charTargetPosition;
-
-    int checkpointStage;
-    int checkpointLevel;
-
-    int stage = 1;
-    int level = 1;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        userManager = GameObject.Find("ImportantHandler").GetComponent<UserManager>();
-        dbManager = GameObject.Find("ImportantHandler").GetComponent<DatabaseManager>();
-
-        UpdateStageSelection();
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        userManager.currentlyPlayingDetail.stage = stage;
-        userManager.currentlyPlayingDetail.level = level;
-        checkpointStage = userManager.checkpointDetail.stage;
-        checkpointLevel = userManager.checkpointDetail.level;
-
-        if (stage != 0)
-            character.transform.position = Vector3.MoveTowards(character.transform.position, charTargetPosition[stage - 1].position, charMoveSpeed * Time.deltaTime);
-    }
-
-    public void UpdateCheckpoint()
-    {
-        dbManager.GetCheckpoint();
-        for (int i = 0; i <= checkpointStage - 1; i++)
+        if (stageIndex == 0)
         {
-            stageButton[i].GetComponent<Button>().interactable = true;
-            stageButton[i].GetComponent<Image>().sprite = stageButtonOn[i];
+            buttonChanger[0].SetActive(false);
+            buttonChanger[1].SetActive(true);
         }
-    }
-
-    public void UpdateStageSelection()
-    {
-        levelSelection.GetComponent<Image>().sprite = levelSelectionSprite[stage - 1];
-        for (int i = 0; i < 3; i++)
+        else if (stageIndex == stageGroup.Count - 1)
         {
-            levelButton[i].GetComponent<Button>().interactable = false;
-            levelButton[i].GetComponent<Image>().sprite = levelButtonOff[i];
-        }
-
-        if (stage == checkpointStage)
-        {
-            for (int i = 0; i <= checkpointLevel - 1; i++)
-            {
-                levelButton[i].GetComponent<Button>().interactable = true;
-                levelButton[i].GetComponent<Image>().sprite = levelButtonOn[i];
-            }
+            buttonChanger[0].SetActive(true);
+            buttonChanger[1].SetActive(false);
         }
         else
         {
-            for (int i = 0; i < 3; i++)
-            {
-                levelButton[i].GetComponent<Button>().interactable = true;
-                levelButton[i].GetComponent<Image>().sprite = levelButtonOn[i];
-            }
+            buttonChanger[0].SetActive(true);
+            buttonChanger[1].SetActive(true);
+        }
+
+        for (int i = 0; i < stageGroup.Count; i++)
+        {
+            if (i < stageIndex)
+                MovingScene(stageGroup[i], transformTarget[0]);
+            else if (i == stageIndex)
+                MovingScene(stageGroup[i], transformTarget[1]);
+            else if (i > stageIndex)
+                MovingScene(stageGroup[i], transformTarget[2]);
         }
     }
 
-    public void ChooseStage(int stageIndex)
+    public void MovingScene(GameObject stage, Transform target)
     {
-        stage = stageIndex;
-        UpdateStageSelection();
+        stage.transform.position = Vector3.MoveTowards(stage.transform.position,
+                                                       target.position,
+                                                       moveSpeed * Time.deltaTime);
     }
 
-    public void ChooseLevel(int levelIndex)
+    public void ChangeStageGroup(int temp)
     {
-        level = levelIndex;
-        Common.CommonFunction.MoveToScene($"2-Windows-Level{level}");
+        if (temp == 0 && stageIndex != 0)
+            stageIndex -= 1;
+        else if (temp == 1 && stageIndex != stageGroup.Count)
+            stageIndex += 1;
     }
 }

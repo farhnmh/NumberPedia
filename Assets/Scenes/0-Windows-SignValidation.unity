@@ -2057,7 +2057,6 @@ GameObject:
   - component: {fileID: 782636895}
   - component: {fileID: 782636897}
   - component: {fileID: 782636896}
-  - component: {fileID: 782636898}
   m_Layer: 5
   m_Name: Splash Screen
   m_TagString: Untagged
@@ -2122,25 +2121,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782636894}
   m_CullTransparentMesh: 1
---- !u!95 &782636898
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782636894}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 60eaca44860b33c4eb82899cf4401292, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &786106227
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,12 +3408,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0568298242af7f40acc0dea04a9ba14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image:
-  - {fileID: 782636894}
-  decreaseIndex: 0.1
+  fadeIn: 0
+  fadeOut: 1
+  image: {fileID: 782636894}
+  increaseDecreaseIndex: 0.1
   delayOnAwake: 1
   delayOnProcess: 0.05
-  isDestroy: 1
+  playOnStart: 1
+  sceneTarget: 
+  fadingForNextScene: 0
 --- !u!114 &1229259492
 MonoBehaviour:
   m_ObjectHideFlags: 0
