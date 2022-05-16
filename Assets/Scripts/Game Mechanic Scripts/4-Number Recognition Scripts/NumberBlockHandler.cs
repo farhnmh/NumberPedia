@@ -10,7 +10,6 @@ public class NumberBlockHandler : MonoBehaviour
     public GameObject interactableBlock;
     public GameObject nonInteractableBlock;
     public Animator animator;
-    public AudioSource audioSource;
 
     [Header("Description Attribute")]
     public string numberIndex;
