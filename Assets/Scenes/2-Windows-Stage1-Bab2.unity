@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 21637049}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -568,7 +568,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1307975091}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -881,6 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967369fcf682204f8d96ff09a0fb9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlay: 1
   gameManager: {fileID: 0}
   audioSource: {fileID: 30590795}
   isDone: 0
@@ -4351,7 +4351,7 @@ GameObject:
   - component: {fileID: 296203141}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4389,7 +4389,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1307975091}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -6418,7 +6417,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374753358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19de8f65def315b41aee4f41aa09f8b4, type: 3}
   m_Name: 
@@ -9190,7 +9189,7 @@ GameObject:
   - component: {fileID: 513102290}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9345,7 +9344,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 30590796}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -9576,7 +9574,7 @@ GameObject:
   - component: {fileID: 536811567}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9614,7 +9612,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 2055460412}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -15488,7 +15485,7 @@ GameObject:
   - component: {fileID: 849575079}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15526,7 +15523,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1426458410}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -16855,7 +16851,7 @@ GameObject:
   - component: {fileID: 912424120}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16893,7 +16889,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1426458410}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -17882,7 +17877,7 @@ GameObject:
   - component: {fileID: 983810195}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17920,7 +17915,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1426458410}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -21997,6 +21991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967369fcf682204f8d96ff09a0fb9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlay: 1
   gameManager: {fileID: 0}
   audioSource: {fileID: 1176129253}
   isDone: 0
@@ -23841,7 +23836,7 @@ GameObject:
   - component: {fileID: 1249298004}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23879,7 +23874,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 2055460412}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -24248,7 +24242,7 @@ GameObject:
   - component: {fileID: 1269565526}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24286,7 +24280,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1307975091}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -25468,6 +25461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967369fcf682204f8d96ff09a0fb9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlay: 1
   gameManager: {fileID: 0}
   audioSource: {fileID: 1307975092}
   isDone: 0
@@ -28088,7 +28082,7 @@ GameObject:
   - component: {fileID: 1421837098}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28243,7 +28237,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1176129254}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -28313,6 +28306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967369fcf682204f8d96ff09a0fb9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlay: 1
   gameManager: {fileID: 0}
   audioSource: {fileID: 1426458411}
   isDone: 0
@@ -28705,7 +28699,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450128695}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19de8f65def315b41aee4f41aa09f8b4, type: 3}
   m_Name: 
@@ -28830,7 +28824,7 @@ GameObject:
   - component: {fileID: 1462635303}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28868,7 +28862,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1426458410}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -29051,7 +29044,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464268244}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19de8f65def315b41aee4f41aa09f8b4, type: 3}
   m_Name: 
@@ -29869,7 +29862,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520044812}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19de8f65def315b41aee4f41aa09f8b4, type: 3}
   m_Name: 
@@ -30736,7 +30729,7 @@ GameObject:
   - component: {fileID: 1593030787}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30774,7 +30767,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1426458410}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -33133,7 +33125,7 @@ MonoBehaviour:
   maxX: 0.0140625
   maxY: -0.013888889
   loadingSpeed: 3
-  isTracking: 1
+  isTracking: 0
   cursor: {fileID: 2028740244}
   handGroup: {fileID: 1929831256}
   handObject:
@@ -35408,7 +35400,7 @@ GameObject:
   - component: {fileID: 1840290391}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35563,7 +35555,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 30590796}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -37479,7 +37470,7 @@ GameObject:
   - component: {fileID: 1937246288}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37517,7 +37508,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 1307975091}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5
@@ -39177,7 +39167,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028740244}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19de8f65def315b41aee4f41aa09f8b4, type: 3}
   m_Name: 
@@ -39585,6 +39575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967369fcf682204f8d96ff09a0fb9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlay: 1
   gameManager: {fileID: 0}
   audioSource: {fileID: 2055460413}
   isDone: 0
@@ -39966,7 +39957,7 @@ GameObject:
   - component: {fileID: 2102332281}
   m_Layer: 0
   m_Name: Fox Group
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40004,7 +39995,6 @@ MonoBehaviour:
   isDone: 0
   gameManager: {fileID: 0}
   levelManager: {fileID: 2055460412}
-  hand: {fileID: 0}
   number: 0
   moveSpeed: 5
   fadeSpeed: 0.5

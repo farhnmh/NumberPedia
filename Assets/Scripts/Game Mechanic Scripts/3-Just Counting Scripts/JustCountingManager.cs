@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JustCountingManager : MonoBehaviour
 {
+    public bool isPlay;
     public JustCountingInGameManager gameManager;
     public AudioSource audioSource;
     public bool isDone;

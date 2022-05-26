@@ -3505,8 +3505,8 @@ MonoBehaviour:
   totalHand: 0
   maxX: 0.0140625
   maxY: -0.013888889
-  loadingSpeed: 3
-  isTracking: 1
+  loadingSpeed: 5
+  isTracking: 0
   cursor: {fileID: 2028740244}
   handGroup: {fileID: 1929831256}
   handObject:

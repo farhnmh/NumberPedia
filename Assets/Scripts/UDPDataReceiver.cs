@@ -42,6 +42,7 @@ public class UDPDataReceiver : MonoBehaviour
     void OnApplicationQuit()
     {
         receiverThread.Abort();
+        print("Aborted");
     }
 #endif
 

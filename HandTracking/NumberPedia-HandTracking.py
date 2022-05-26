@@ -44,8 +44,13 @@ def ScaleSetting(x):
     global scaleSet
     scaleSet = -x
 
-def BrigtnessSetting(x):
-    print(x)
+def BrightnessSetting(x):
+    global brightnessSet
+    brightnessSet = x
+
+def ContrastSetting(x):
+    global contrastSet
+    contrastSet = x
 
 def BallCircleVisualizing():
     global cap, scaleSet, webcamStatus
@@ -202,7 +207,7 @@ def BallColorVisualizing():
             break
 
 def HandVisualizing():
-    global cap, scaleSet, webcamStatus
+    global cap, scaleSet, brightnessSet, contrastSet, webcamStatus
     
     SetupNotification("Your Camera Opened. Setup It and Launch The Game!", 100)
     GeneralAttribute.isRun = True
@@ -220,13 +225,21 @@ def HandVisualizing():
     hands_array = np.empty(10, dtype=object)
 
     cv2.namedWindow(winName)
-    cv2.createTrackbar('Zoom Scalling', winName, 1, 100, ScaleSetting)
-    cv2.setTrackbarMin('Zoom Scalling', winName, -50)
-    cv2.setTrackbarMax('Zoom Scalling', winName, -1)
-    cv2.setTrackbarPos('Zoom Scalling', winName, -50)
+    cv2.createTrackbar('Scale', winName, 0, 100, ScaleSetting)
+    cv2.setTrackbarMin('Scale', winName, -50)
+    cv2.setTrackbarMax('Scale', winName, 0)
+    cv2.setTrackbarPos('Scale', winName, -25)
 
-    cv2.createTrackbar('Brightness Adjustment', winName, 0, 100, BrigtnessSetting)
+    cv2.createTrackbar('Brightness', winName, 25, 75, BrightnessSetting)
+    cv2.setTrackbarMin('Brightness', winName, 25)
+    cv2.setTrackbarMax('Brightness', winName, 75)
+    cv2.setTrackbarPos('Brightness', winName, 50)
 
+    cv2.createTrackbar('Contrast', winName, 100, 150, ContrastSetting)
+    cv2.setTrackbarMin('Contrast', winName, 100)
+    cv2.setTrackbarMax('Contrast', winName, 150)
+    cv2.setTrackbarPos('Contrast', winName, 125)
+    
     while True:
         totalHand = 0
         success, img = cap.read()
@@ -253,6 +266,10 @@ def HandVisualizing():
             result = cv2.flip(resized_cropped, 0)
         elif isHorizontal.get() == True:
             result = cv2.flip(resized_cropped, 1)
+
+        result = cv2.cvtColor(result, cv2.COLOR_BGR2HSV)
+        result[:,:,2] = np.clip((contrastSet / 100) * result[:,:,2] + brightnessSet, 0, 255)
+        result = cv2.cvtColor(result, cv2.COLOR_HSV2BGR)
 
         hands, result = detector.findHands(result)  # With Draw
         # hands = detector.findHands(img, draw=False)  # No Draw

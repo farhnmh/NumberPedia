@@ -8,7 +8,6 @@ public class JustCountingAfterInteraction : MonoBehaviour
     public bool isDone;
     public JustCountingInGameManager gameManager;
     public JustCountingManager levelManager;
-    public HandController hand;
 
     [Header("Counting Number After Interaction")]
     public int number;
@@ -31,17 +30,14 @@ public class JustCountingAfterInteraction : MonoBehaviour
     {
         if (isChosen && !isDone)
         {
-            if (hand.isReady)
-            {
-                number = levelManager.numberIndex + 1;
-                objectInteract[0].SetActive(false);
-                objectInteract[1].SetActive(true);
+            number = levelManager.numberIndex + 1;
+            objectInteract[0].SetActive(false);
+            objectInteract[1].SetActive(true);
 
-                levelManager.numberIndex++;
+            levelManager.numberIndex++;
 
-                isDone = true;
-                isChosen = false;
-            }
+            isDone = true;
+            isChosen = false;
         }
         else if (isDone)
         {
@@ -49,8 +45,11 @@ public class JustCountingAfterInteraction : MonoBehaviour
             numberTarget[number].SetActive(true);
             StartCoroutine(FadeOut(numberTarget[number]));
             numberTarget[number].transform.position = Vector3.MoveTowards(numberTarget[number].transform.position,
-                                                                     transformInteract[1].position,
-                                                                     moveSpeed * Time.deltaTime);
+                                                                          transformInteract[1].position,
+                                                                          moveSpeed * Time.deltaTime);
+
+            if (numberTarget[number].transform.position == transformInteract[1].position)
+                levelManager.isPlay = true;
         }
 
         if (levelManager.numberTarget == levelManager.numberIndex)
@@ -73,9 +72,9 @@ public class JustCountingAfterInteraction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Hand"))
+        if (collision.CompareTag("Hand") && levelManager.isPlay)
         {
-            hand = collision.GetComponent<HandController>();
+            levelManager.isPlay = false;
             isChosen = true;
         }
     }
