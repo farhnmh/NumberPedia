@@ -6,6 +6,7 @@ using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public bool usingDatabase;
     public TextMeshProUGUI welcomeText;
     public UserManager userManager;
     public DatabaseManager dbManager;

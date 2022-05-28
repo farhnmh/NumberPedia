@@ -10,6 +10,7 @@ using TMPro;
 
 public class UDPDataReceiver : MonoBehaviour
 {
+    public bool isAlive;
     public int portNum;
     public string packetReceived;
     public ControlManager controlManager;
@@ -28,11 +29,6 @@ public class UDPDataReceiver : MonoBehaviour
         receiverThread.Start();
     }
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         detailText.text = notification;
@@ -41,15 +37,16 @@ public class UDPDataReceiver : MonoBehaviour
 #if UNITY_EDITOR
     void OnApplicationQuit()
     {
+        udpClient.Close();
         receiverThread.Abort();
-        print("Aborted");
+        isAlive = false;
     }
 #endif
 
     void UDPReceiver()
     {
         notification = "Receiver Thread Opened";
-        while (true)
+        while (isAlive)
         {
             IPEndPoint remoteEP = null;
             byte[] data = udpClient.Receive(ref remoteEP);
@@ -63,5 +60,6 @@ public class UDPDataReceiver : MonoBehaviour
             else
                 controlManager.totalHand = 0;
         }
+        udpClient.Close();
     }
 }

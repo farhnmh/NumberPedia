@@ -17,8 +17,9 @@ public class BubbleNumbersGameManager : MonoBehaviour
 
     [Header("Randomize Attributes")]
     public int numberChallenge;
-    public TextMeshProUGUI challengeText;
     public GameObject numberTarget;
+    public TextMeshProUGUI challengeText;
+    public List<GameObject> numberHints;
     public List<NumberDetail> bubbleNumbers;
 
     [Header("Bubble Number Attributes")]
@@ -45,14 +46,20 @@ public class BubbleNumbersGameManager : MonoBehaviour
         for (int i = 0; i < bubbleNumbers.Count; i++)
         {
             bubbleNumbers[i].numberBubble.GetComponent<BoxCollider2D>().enabled = false;
+            bubbleNumbers[i].numberBubble.GetComponent<GameObjectMoveRandomly>().glowObject.SetActive(false);
+
             if (i == targetTemp)
             {
                 numberTarget = bubbleNumbers[i].numberBubble;
                 bubbleNumbers[i].numberBubble.GetComponent<BoxCollider2D>().enabled = true;
                 audioSource.PlayOneShot(bubbleNumbers[i].audioClip);
 
-                challengeText.text = $"Yang Manakah Angka {bubbleNumbers[i].number}?";
+                challengeText.text = $"Ayo Cari Angka {bubbleNumbers[i].number}!!";
+                for (int j = 0; j < numberHints.Count; j++)
+                    numberHints[j].GetComponent<SpriteRenderer>().sprite = bubbleNumbers[i].numberBubble.GetComponent<GameObjectMoveRandomly>().numberObject.GetComponent<SpriteRenderer>().sprite;
+
                 numberChallenge = bubbleNumbers[i].number;
+                bubbleNumbers[i].numberBubble.GetComponent<GameObjectMoveRandomly>().glowObject.SetActive(true);
             }
         }
     }

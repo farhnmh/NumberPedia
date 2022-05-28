@@ -7,12 +7,15 @@ public class GameObjectMoveRandomly : MonoBehaviour
     public bool isChosen;
     public BubbleNumbersGameManager gameManager;
     public AnimationClip bubbleSplash;
+    public GameObject numberObject;
+    public GameObject glowObject;
     public Vector3 targetPos;
     public float moveSpeed;
     public float waitDestroy;
 
     void Start()
     {
+        gameManager = transform.parent.GetComponent<BubbleNumbersGameManager>();
         InitializeRandomData();
     }
 

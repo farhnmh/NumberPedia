@@ -8966,6 +8966,263 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1933672639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1933672642}
+  - component: {fileID: 1933672641}
+  - component: {fileID: 1933672640}
+  m_Layer: 0
+  m_Name: ImportantHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1933672640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933672639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a819a233c3417a438b429e272d180f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1933672641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933672639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351f5f0ad508bd441b4baa5a559202e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInitiating: 1
+  isTracking: 1
+  fullName: 
+  schoolName: 
+  age: 0
+  currentlyPlayingDetail:
+    stage: 1
+    level: 1
+  checkpointDetail:
+    stage: 0
+    level: 0
+  historyDetail:
+  - stage: 1
+    level: 1
+    historyIndex: 1
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 1
+    level: 1
+    historyIndex: 2
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 1
+    level: 1
+    historyIndex: 3
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 1
+    level: 2
+    historyIndex: 1
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 1
+    level: 2
+    historyIndex: 2
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 1
+    level: 2
+    historyIndex: 3
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 1
+    level: 3
+    historyIndex: 1
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 1
+    level: 3
+    historyIndex: 2
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 1
+    level: 3
+    historyIndex: 3
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 2
+    level: 1
+    historyIndex: 1
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 2
+    level: 1
+    historyIndex: 2
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 2
+    level: 1
+    historyIndex: 3
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 2
+    level: 2
+    historyIndex: 1
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 2
+    level: 2
+    historyIndex: 2
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 2
+    level: 2
+    historyIndex: 3
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 2
+    level: 3
+    historyIndex: 1
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 2
+    level: 3
+    historyIndex: 2
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 2
+    level: 3
+    historyIndex: 3
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 3
+    level: 1
+    historyIndex: 1
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 3
+    level: 1
+    historyIndex: 2
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 3
+    level: 1
+    historyIndex: 3
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 3
+    level: 2
+    historyIndex: 1
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 3
+    level: 2
+    historyIndex: 2
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 3
+    level: 2
+    historyIndex: 3
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 3
+    level: 3
+    historyIndex: 1
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 3
+    level: 3
+    historyIndex: 2
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+  - stage: 3
+    level: 3
+    historyIndex: 3
+    answer: 
+    datetime: 
+    score: 
+    wrongAnswer: 
+--- !u!4 &1933672642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933672639}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1953981541
 GameObject:
   m_ObjectHideFlags: 0
@@ -9891,6 +10148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2f552c140acb247bd38fa3eea05695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingDatabase: 0
   welcomeText: {fileID: 1792775881}
   userManager: {fileID: 0}
   dbManager: {fileID: 0}
