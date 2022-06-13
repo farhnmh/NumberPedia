@@ -5,73 +5,44 @@ using UnityEngine;
 
 public class FadeController : MonoBehaviour
 {
-    public bool fadeIn;
-    public bool fadeOut;
-
-    [Header("General Attribute")]
-    [SerializeField] GameObject image;
-    public float increaseDecreaseIndex;
-    public float delayOnAwake;
-    public float delayOnProcess;
+    [Header("Fading When Start Scene")]
     public bool playOnStart;
+    [SerializeField] List<GameObject> imageFadeStart;
 
     [Header("Fading For Move Scene")]
+    public bool playWhenMove;
+    [SerializeField] GameObject imageFadeMove;
     public string sceneTarget;
-    public bool fadingForNextScene;
 
     // Start is called before the first frame update
     void Start()
     {
         if (playOnStart)
-            StartCoroutine(DelayFading());
+        {
+            for (int i = 0; i < imageFadeStart.Count; i++)
+            {
+                imageFadeStart[i].SetActive(true);
+                imageFadeStart[i].GetComponent<Animator>().SetTrigger("isFadingOut");
+            }
+        }
+    }
+
+    void Update()
+    {
+        if (imageFadeStart[0] != null && imageFadeStart[0].GetComponent<Image>().color.a <= 0)
+            Destroy(imageFadeStart[0]);
+        if (playWhenMove && imageFadeMove.GetComponent<Image>().color.a >= 1)
+            Common.CommonFunction.MoveToScene(sceneTarget);
     }
 
     public void FadingForMoveScene(string scene)
     {
-        image.SetActive(true);
-        sceneTarget = scene;
-        StartCoroutine(DelayFading());
-    }
-
-    IEnumerator DelayFading()
-    {
-        yield return new WaitForSeconds(delayOnAwake);
-        StartCoroutine(Fading());
-    }
-
-    IEnumerator Fading()
-    {
-        var tempAlpha = image.GetComponent<Image>().color;
-
-        if (fadeOut)
-            tempAlpha.a -= increaseDecreaseIndex;
-        else if (fadeIn)
-            tempAlpha.a += increaseDecreaseIndex;
-
-        image.GetComponent<Image>().color = tempAlpha;
-
-        if (fadeOut && tempAlpha.a <= 0)
+        if (playWhenMove)
         {
-            if (fadingForNextScene)
-                Common.CommonFunction.MoveToScene(sceneTarget);
-            else
-            {
-                Destroy(image);
-                Destroy(this);
-            }
-        }
-        else if (fadeIn && tempAlpha.a >= 2)
-        {
-            if (fadingForNextScene)
-                Common.CommonFunction.MoveToScene(sceneTarget);
-            else
-            {
-                Destroy(image);
-                Destroy(this);
-            }
-        }
+            sceneTarget = scene;
 
-        yield return new WaitForSeconds(delayOnProcess);
-        StartCoroutine(Fading());
+            imageFadeMove.SetActive(true);
+            imageFadeMove.GetComponent<Animator>().SetTrigger("isFadingIn");
+        }
     }
 }

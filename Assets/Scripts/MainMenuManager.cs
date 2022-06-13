@@ -6,10 +6,8 @@ using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public bool usingDatabase;
     public TextMeshProUGUI welcomeText;
     public UserManager userManager;
-    public DatabaseManager dbManager;
     public GameObject firstPanel;
 
     [Header("isTracking Attribute")]
@@ -23,15 +21,24 @@ public class MainMenuManager : MonoBehaviour
     public List<GameObject> panel;
     public List<Transform> targetPosition;
 
+    [Header("Audio Attributes")]
+    public AudioClip bgmScene;
+    public AudioSource bgmHandler;
+    public AudioSource sfxButtonClickedHandler;
+
+    void Awake()
+    {
+        userManager = GameObject.Find("ImportantHandler").GetComponent<UserManager>();
+        sfxButtonClickedHandler = userManager.transform.GetChild(0).GetComponent<AudioSource>();
+        bgmHandler = userManager.transform.GetChild(1).GetComponent<AudioSource>();
+        
+        bgmHandler.clip = bgmScene;
+        bgmHandler.Play();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        userManager = GameObject.Find("ImportantHandler").GetComponent<UserManager>();
-        dbManager = GameObject.Find("ImportantHandler").GetComponent<DatabaseManager>();
-
-        dbManager.GetCheckpoint();
-        dbManager.GetHistory();
-
         if (userManager.isTracking)
             btnTracking.GetComponent<Image>().sprite = btnOn;
         else
@@ -46,8 +53,6 @@ public class MainMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        welcomeText.text = $"Welcome Back, {userManager.fullName}!";
-
         for (int i = 0; i < panel.Count; i++)
         {
             if (i == panelIndex)
@@ -84,5 +89,10 @@ public class MainMenuManager : MonoBehaviour
     public void MovingPanel(GameObject panel, Transform targetPosition)
     {
         panel.transform.position = Vector3.MoveTowards(panel.transform.position, targetPosition.position, moveSpeedPanel * Time.deltaTime);
+    }
+
+    public void PlaySFXButtonClicked()
+    {
+        sfxButtonClickedHandler.Play();
     }
 }

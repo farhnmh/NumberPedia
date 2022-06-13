@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -11,4 +12,5 @@ public class DescriptionHandler : MonoBehaviour
     public AudioSource audioSource;
     public Animator animator;
     public Image number;
+    public VideoPlayer videoPlayer;
 }

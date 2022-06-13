@@ -3,13 +3,13 @@ from msilib.schema import Font
 from tkinter import *
 from tkinter import ttk
 from tkinter.font import Font
-import cv2, os, pygame.image, pygame.camera
+import cv2, os, pygame.image, pygame.camera, pyglet
 
 #tracking
 from cvzone.HandTrackingModule import HandDetector
 from cvzone.ColorModule import ColorFinder
 from cvzone import FPS 
-import GeneralAttribute, PacketSender, UDPDataSender
+import GeneralAttribute, UDPDataSender
 import os, cv2, numpy as np, pyautogui, threading, cvzone, imutils, socket
     
 def SetupNotification(content, position):
@@ -349,7 +349,7 @@ def GetListWebcam():
 #define capture device
 cap = None
 webcamStatus = False
-list_cam = list()
+list_cam = list()   
 GetListWebcam()
 
 #sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -367,8 +367,11 @@ img_ballEmoji = PhotoImage(file='Assets/ico_ballemoji.png')
 img_toggle_ex = PhotoImage(file='Assets/ico_toggleoff.png')
 img_launchGame = PhotoImage(file='Assets/ico_launchgame.png')
 
-header1_font = Font(family="Poppins", size=12)
-header2_font = Font(family="Poppins", size=10)
+font_name = "Poppins"
+pyglet.font.add_file(f'Assets/{font_name}.ttf')
+
+header1_font = Font(family=font_name, size=12)
+header2_font = Font(family=font_name, size=10)
 
 #setting gui
 lblLogo = Label(root, image=img_logoNumberPedia)

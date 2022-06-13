@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -13,15 +14,10 @@ public class NumberBlockHandler : MonoBehaviour
 
     [Header("Description Attribute")]
     public string numberIndex;
+    public VideoClip videoClip;
     public GameObject descriptionPanel;
     public AudioClip audioClip;
     public Sprite numberImage;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -31,15 +27,6 @@ public class NumberBlockHandler : MonoBehaviour
         
         if (!isInteracted)
             animator.enabled = false;
-
-        if (!gameManager.isPlay)
-        {
-            if (!descriptionPanel.GetComponent<DescriptionHandler>().audioSource.isPlaying)
-            {
-                descriptionPanel.GetComponent<DescriptionHandler>().animator.SetTrigger("isScaleDown");
-                gameManager.isPlay = true;
-            }
-        }
     }
 
     public void ShowDescriptionPanel()
@@ -55,8 +42,17 @@ public class NumberBlockHandler : MonoBehaviour
         handler.number.sprite = numberImage;
         handler.number.SetNativeSize();
 
-        handler.audioSource.clip = audioClip;
-        handler.audioSource.Play(); 
+        handler.videoPlayer.clip = videoClip;
+        handler.videoPlayer.Play();
+
+        StartCoroutine(WaitingForHide());
+    }
+
+    public IEnumerator WaitingForHide()
+    {
+        yield return new WaitForSeconds((float) videoClip.length);
+        descriptionPanel.GetComponent<DescriptionHandler>().animator.SetTrigger("isScaleDown");
+        gameManager.isPlay = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
