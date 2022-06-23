@@ -12,17 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/1-Windows-StageLevelSelection.unity
     guid: 0df9055cf22205747aa250cbe12cd072
   - enabled: 1
-    path: Assets/Scenes/2-Windows-Stage1-Bab1.unity
-    guid: e445c7d651eef744da0ded04142953e0
+    path: Assets/Scenes/2-Windows-Stage1.unity
+    guid: 829dbd2632a5cd94a88bf43b4e6a10d9
   - enabled: 1
-    path: Assets/Scenes/2-Windows-Stage1-Bab2.unity
-    guid: 7a62843947a1ab24da77e3e178c0f115
+    path: Assets/Scenes/2-Windows-Stage2.unity
+    guid: 724fbbbdd9564de4da97cb0a1a66a914
   - enabled: 1
-    path: Assets/Scenes/2-Windows-Stage1-Level1.unity
-    guid: 05d93d967adc6254b955d6c428e61441
+    path: Assets/Scenes/2-Windows-Stage3.unity
+    guid: 5d1830064bdf09649becb97f4f568b37
   - enabled: 1
-    path: Assets/Scenes/2-Windows-Stage1-Level2.unity
-    guid: 2174aea2966728e4cbfad1ebbf6497c2
+    path: Assets/Scenes/2-Windows-Stage4.unity
+    guid: 62cd5b082f7ba794888c27ebd948503a
   - enabled: 1
     path: Assets/Scenes/3-Windows-Game.unity
     guid: 57e1afd32a640864587df431be51b571

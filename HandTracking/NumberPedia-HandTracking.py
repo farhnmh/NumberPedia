@@ -3,15 +3,19 @@ from msilib.schema import Font
 from tkinter import *
 from tkinter import ttk
 from tkinter.font import Font
-import cv2, os, pygame.image, pygame.camera, pyglet
+import cv2, os, pygame.image, pygame.camera, pyglet, subprocess
 
 #tracking
 from cvzone.HandTrackingModule import HandDetector
 from cvzone.ColorModule import ColorFinder
 from cvzone import FPS 
 import GeneralAttribute, UDPDataSender
-import os, cv2, numpy as np, pyautogui, threading, cvzone, imutils, socket
-    
+import os, cv2, numpy as np, pyautogui, threading, cvzone, imutils
+
+scaleSet = 0
+brightnessSet = 0
+contrastSet = 0
+
 def SetupNotification(content, position):
     lblNotif.config(text=content)
     lblNotif.place(x=position)
@@ -227,18 +231,18 @@ def HandVisualizing():
     cv2.namedWindow(winName)
     cv2.createTrackbar('Scale', winName, 0, 100, ScaleSetting)
     cv2.setTrackbarMin('Scale', winName, -50)
-    cv2.setTrackbarMax('Scale', winName, 0)
-    cv2.setTrackbarPos('Scale', winName, -25)
+    cv2.setTrackbarMax('Scale', winName, -1)
+    cv2.setTrackbarPos('Scale', winName, -50)
 
-    cv2.createTrackbar('Brightness', winName, 25, 75, BrightnessSetting)
-    cv2.setTrackbarMin('Brightness', winName, 25)
-    cv2.setTrackbarMax('Brightness', winName, 75)
-    cv2.setTrackbarPos('Brightness', winName, 50)
+    cv2.createTrackbar('Brightness', winName, 0, 100, BrightnessSetting)
+    cv2.setTrackbarMin('Brightness', winName, 0)
+    cv2.setTrackbarMax('Brightness', winName, 100)
+    cv2.setTrackbarPos('Brightness', winName, 0)
 
-    cv2.createTrackbar('Contrast', winName, 100, 150, ContrastSetting)
-    cv2.setTrackbarMin('Contrast', winName, 100)
-    cv2.setTrackbarMax('Contrast', winName, 150)
-    cv2.setTrackbarPos('Contrast', winName, 125)
+    cv2.createTrackbar('Contrast', winName, 75, 175, ContrastSetting)
+    cv2.setTrackbarMin('Contrast', winName, 75)
+    cv2.setTrackbarMax('Contrast', winName, 175)
+    cv2.setTrackbarPos('Contrast', winName, 75)
     
     while True:
         totalHand = 0
@@ -286,7 +290,6 @@ def HandVisualizing():
                     GeneralAttribute.positionHand = f"{index + 1},{position_index_1}"
                     for char in disallowed_characters:
                         GeneralAttribute.positionHand = GeneralAttribute.positionHand.replace(char, "")
-
                 elif index == 1:
                     position_index_1 = str(hands_array[0]["center"])
                     position_index_2 = str(hands_array[1]["center"]) 
@@ -294,7 +297,6 @@ def HandVisualizing():
                     GeneralAttribute.positionHand = f"{index + 1},{position_index_1},{position_index_2}"
                     for char in disallowed_characters:
                         GeneralAttribute.positionHand = GeneralAttribute.positionHand.replace(char, "")
-
                 elif index == 2:
                     position_index_1 = str(hands_array[0]["center"])
                     position_index_2 = str(hands_array[1]["center"])  
@@ -303,7 +305,6 @@ def HandVisualizing():
                     GeneralAttribute.positionHand = f"{index + 1},{position_index_1},{position_index_2},{position_index_3}"
                     for char in disallowed_characters:
                         GeneralAttribute.positionHand = GeneralAttribute.positionHand.replace(char, "")
-
                 elif index == 3:
                     position_index_1 = str(hands_array[0]["center"]) 
                     position_index_2 = str(hands_array[1]["center"])  
@@ -313,9 +314,6 @@ def HandVisualizing():
                     GeneralAttribute.positionHand = f"{index + 1},{position_index_1},{position_index_2},{position_index_3},{position_index_4}"
                     for char in disallowed_characters:
                         GeneralAttribute.positionHand = GeneralAttribute.positionHand.replace(char, "")
-
-                #sock.sendto(str.encode(str(GeneralAttribute.positionHand)), serverAddressPort)
-                
         else:
             GeneralAttribute.positionHand = ""
         
@@ -352,13 +350,12 @@ webcamStatus = False
 list_cam = list()   
 GetListWebcam()
 
-#sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-#serverAddressPort = ("127.0.0.1", 5053)
-
 root = Tk()
 root.title("NumberPedia")
 root.geometry("550x350")
 root.resizable(0, 0)
+root.tk.call('tk', 'scaling', 1.6)
+root.iconbitmap('Assets/logo_game.ico')
 
 #import gui
 img_logoNumberPedia = PhotoImage(file='Assets/ico_logo.png')
@@ -370,8 +367,8 @@ img_launchGame = PhotoImage(file='Assets/ico_launchgame.png')
 font_name = "Poppins"
 pyglet.font.add_file(f'Assets/{font_name}.ttf')
 
-header1_font = Font(family=font_name, size=12)
-header2_font = Font(family=font_name, size=10)
+header1_font = Font(family=font_name, size=10)
+header2_font = Font(family=font_name, size=8)
 
 #setting gui
 lblLogo = Label(root, image=img_logoNumberPedia)
@@ -441,9 +438,10 @@ def exWebcamButton(index):
             thread_webcam = threading.Thread(target=lambda:ValidationInputExWebcam())
             thread_webcam.start()
 
-comboWebcam = ttk.Combobox(root, value=list_cam, width=25)
+comboWebcam = ttk.Combobox(root, value=list_cam, height=0, width=20, font=header2_font, state="readonly")
 comboWebcam.set("Select Your Camera")
-comboWebcam.place(x=200, y=225)
+comboWebcam.place(x=200, y=223)
+root.option_add('*TCombobox*Listbox.font', header2_font) 
 
 lblExWebcam = Label(root, text="Start?", font=header2_font)
 lblExWebcam.place(x=400, y=222)
@@ -462,11 +460,10 @@ def ThreadForGame():
         SetupNotification("Setup The Webcam First, Please!", 170)
 
 def PlayTheGame():
-    root_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    root_directory = os.path.join(root_directory, 'NumberPedia', 'NumberPedia.exe')
-    game_directory = root_directory.replace("\\", "/")
-    os.system(game_directory)
-    #print(game_directory)
+    dirname = os.getcwd()
+    cmd = os.path.join(dirname, 'NumberPedia-Game.exe')
+    print(f"Opening The Game at {cmd} ...")
+    subprocess.call(cmd)
 
 btnLaunchGame = Button(root, image=img_launchGame, border=0, command=lambda:ThreadForGame())
 btnLaunchGame.place(x=275 - img_launchGame.width() / 2, y=275 - img_launchGame.height() / 2)

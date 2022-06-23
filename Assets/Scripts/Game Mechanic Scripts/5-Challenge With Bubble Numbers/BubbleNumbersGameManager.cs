@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class BubbleNumbersGameManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class BubbleNumbersGameManager : MonoBehaviour
 
     public bool isPlay;
     public AudioSource audioSource;
+    public GameObject gameOverPanel;
+    public GameObject retryButton;
+    public GameObject homeButton;
 
     [Header("Randomize Attributes")]
     public int numberChallenge;
@@ -38,6 +42,17 @@ public class BubbleNumbersGameManager : MonoBehaviour
     void Update()
     {
         isPlay = !audioSource.isPlaying;
+        if (bubbleNumbers.Count == 0)
+        {
+            gameOverPanel.SetActive(true);
+            gameOverPanel.GetComponent<Animator>().SetTrigger("isScaleUp");
+            retryButton.GetComponent<Button>().interactable =
+                homeButton.GetComponent<Button>().interactable =
+                !gameOverPanel.GetComponent<AudioSource>().isPlaying;
+
+            challengeText.text = "";
+            for (int i = 0; i < numberHints.Count; i++) numberHints[i].SetActive(false);
+        }
     }
 
     public void RandomChallenge()

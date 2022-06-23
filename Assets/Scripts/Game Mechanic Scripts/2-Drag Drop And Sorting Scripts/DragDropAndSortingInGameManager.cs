@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DragDropAndSortingInGameManager : MonoBehaviour
 {
+    public bool isDone;
     public bool isReady;
-    public HandController hand;
+    public StageManager stageManager;
+    public AudioSource audioSource;
     public AudioClip wrongNumberSFX;
     public List<AudioClip> correctNumberSFX;
     public List<AudioClip> justNumberSFX;
@@ -15,17 +17,33 @@ public class DragDropAndSortingInGameManager : MonoBehaviour
     public List<GameObject> otterGroup;
     public List<Transform> transformTarget;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        isReady = false;
         RandomSorting();
     }
 
     // Update is called once per frame
     void Update()
     {
-        isPlayingChecker();
+        PlayingChecker();
+        if (isDone && !audioSource.isPlaying)
+        {
+            gameObject.GetComponent<Animator>().SetTrigger("isMovingOut");
+            StartCoroutine(SetPanelFalse());
+
+            if (stageManager != null)
+            {
+                stageManager.isPlay = false;
+                stageManager = null;
+            }
+        }
+    }
+
+    IEnumerator SetPanelFalse()
+    {
+        isDone = false;
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
     }
 
     public void ScaleUpOtters(int numberTarget)
@@ -48,19 +66,18 @@ public class DragDropAndSortingInGameManager : MonoBehaviour
         }
     }
 
-    void isPlayingChecker()
+    void PlayingChecker()
     {
+        isReady = !audioSource.isPlaying;
+
         for (int i = 0; i < otterGroup.Count; i++)
         {
             var otter = otterGroup[i].GetComponent<DragDropAndSortingAfterInteraction>();
-            if (otter.audioSource.isPlaying)
+            if (otter.isDone) isDone = true;
+            else
             {
-                isReady = false;
+                isDone = false;
                 break;
-            }
-            else if (!otter.audioSource.isPlaying)
-            {
-                isReady = true;
             }
         }
     }
@@ -70,11 +87,8 @@ public class DragDropAndSortingInGameManager : MonoBehaviour
         for (int i = 0; i < otterGroup.Count; i++)
         {
             int rand = Random.Range(0, randomValue.Count);
+            otterGroup[i].GetComponent<DragDropAndSortingAfterInteraction>().positionTemp = transformTarget[randomValue[rand] - 1];
 
-            otterGroup[i].transform.position = transformTarget[randomValue[rand] - 1].position;
-            otterGroup[i].GetComponent<DragDropAndSortingAfterInteraction>().positionTemp = new Vector3(transformTarget[randomValue[rand] - 1].position.x,
-                                                                                                        transformTarget[randomValue[rand] - 1].position.y,
-                                                                                                        0);
             randomValue.RemoveAt(rand);
             isReady = true;
         }

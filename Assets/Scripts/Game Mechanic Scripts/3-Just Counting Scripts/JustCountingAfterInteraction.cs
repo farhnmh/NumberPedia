@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JustCountingAfterInteraction : MonoBehaviour
 {
+    public bool isZero;
     public bool isChosen;
     public bool isDone;
     public JustCountingInGameManager gameManager;
@@ -11,77 +12,56 @@ public class JustCountingAfterInteraction : MonoBehaviour
 
     [Header("Counting Number After Interaction")]
     public int number;
-    public float moveSpeed;
-    public float fadeSpeed;
-    public float delaySpeed;
     public Animator animator;
     public List<GameObject> objectInteract;
-    public List<Transform> transformInteract;
     public List<GameObject> numberTarget;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (isChosen && !isDone)
+        if (levelManager.numberTarget == levelManager.numberIndex)
+            animator.SetTrigger("isDone");
+        if (isChosen)
         {
-            number = levelManager.numberIndex + 1;
+            if (!isZero) number = levelManager.numberIndex + 1;
+            else { number = levelManager.numberIndex = 0; levelManager.isZero = false; }
+
             objectInteract[0].SetActive(false);
             objectInteract[1].SetActive(true);
 
-            levelManager.numberIndex++;
-
-            isDone = true;
-            isChosen = false;
-        }
-        else if (isDone)
-        {
             animator.SetTrigger("isReady");
             numberTarget[number].SetActive(true);
-            StartCoroutine(FadeOut(numberTarget[number]));
-            numberTarget[number].transform.position = Vector3.MoveTowards(numberTarget[number].transform.position,
-                                                                          transformInteract[1].position,
-                                                                          moveSpeed * Time.deltaTime);
 
-            if (numberTarget[number].transform.position == transformInteract[1].position)
-                levelManager.isPlay = true;
-        }
-
-        if (levelManager.numberTarget == levelManager.numberIndex)
-        {
-            animator.SetTrigger("isDone");
+            if (!isDone)
+            {
+                StartCoroutine(LevelDone());
+                isChosen = false;
+                isDone = true;
+            }
         }
     }
 
-    IEnumerator FadeOut(GameObject number)
+    IEnumerator LevelDone()
     {
-        Color objectColor = number.GetComponent<Renderer>().material.color;
-        float fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
+        if (levelManager.numberIndex != levelManager.numberTarget - 1) 
+        {
+            levelManager.audioSource.clip = gameManager.justNumberSFX[number];
+            levelManager.audioSource.Play();
+        }
 
-        objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
-        number.GetComponent<Renderer>().material.color = objectColor;
+        yield return new WaitUntil(() => !levelManager.audioSource.isPlaying);
 
-        yield return new WaitForSeconds(delaySpeed);
-        StartCoroutine(FadeOut(number));
+        levelManager.numberIndex++;
+        levelManager.audioSource.clip = null;
+        levelManager.isPlay = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Hand") && levelManager.isPlay)
+        if (collision.CompareTag("Hand") && levelManager.isPlay && !isDone)
         {
             levelManager.isPlay = false;
             isChosen = true;
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Hand"))
-            isChosen = false;
     }
 }

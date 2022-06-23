@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class ControlManager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class ControlManager : MonoBehaviour
     public float maxY = -0.01388888888f;
     public float loadingSpeed;
     public bool isTracking;
+    public TextMeshProUGUI detailText;
+    public UDPDataReceiver udpReceiver;
 
     [Header("Position Attribute")]
     public GameObject cursor;
@@ -17,6 +21,20 @@ public class ControlManager : MonoBehaviour
     public GameObject[] handObject;
     public Vector2[] positionHands;
     public string[] dataSplitted;
+
+    void Awake()
+    {
+        try 
+        {
+            udpReceiver = GameObject.Find("ImportantHandler").GetComponent<UDPDataReceiver>();
+            udpReceiver.controlManager = gameObject.GetComponent<ControlManager>();
+            isTracking = udpReceiver.gameObject.GetComponent<UserManager>().isTracking;
+        }
+        catch
+        {
+            print("UDP Data Receiver is NULL");
+        }
+    }
 
     // Update is called once per frame
     void FixedUpdate()

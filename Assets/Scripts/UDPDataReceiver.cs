@@ -12,26 +12,27 @@ public class UDPDataReceiver : MonoBehaviour
 {
     public bool isAlive;
     public int portNum;
-    public string packetReceived;
     public ControlManager controlManager;
-    public TextMeshProUGUI detailText;
+    public static UDPDataReceiver Instance;
 
+    string packetReceived;
     string notification;
     static Thread receiverThread;
     static UdpClient udpClient;
 
     void Awake()
     {
-        controlManager = GameObject.Find("Background Script").GetComponent<ControlManager>();
-        udpClient = new UdpClient(portNum);
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
 
+        udpClient = new UdpClient(portNum);
         receiverThread = new Thread(UDPReceiver);
         receiverThread.Start();
-    }
-
-    void Update()
-    {
-        detailText.text = notification;
     }
 
 #if UNITY_EDITOR
@@ -52,13 +53,16 @@ public class UDPDataReceiver : MonoBehaviour
             byte[] data = udpClient.Receive(ref remoteEP);
             packetReceived = Encoding.ASCII.GetString(data);
 
-            if (packetReceived != "")
+            if (controlManager != null)
             {
-                controlManager.dataSplitted = packetReceived.Split(',');
-                controlManager.totalHand = Convert.ToInt32(controlManager.dataSplitted[0]);
-            }
-            else
-                controlManager.totalHand = 0;
+                if (packetReceived != "")
+                {
+                    controlManager.dataSplitted = packetReceived.Split(',');
+                    controlManager.totalHand = Convert.ToInt32(controlManager.dataSplitted[0]);
+                }
+                else
+                    controlManager.totalHand = 0;
+            } 
         }
         udpClient.Close();
     }

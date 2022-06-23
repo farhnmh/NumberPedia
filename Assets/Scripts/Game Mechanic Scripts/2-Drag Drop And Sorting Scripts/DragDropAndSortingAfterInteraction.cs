@@ -8,7 +8,6 @@ public class DragDropAndSortingAfterInteraction : MonoBehaviour
     public bool isDone;
     public HandController hand;
     public DragDropAndSortingInGameManager gameManager;
-    public AudioSource audioSource;
 
     [Header("Drag Drop And Sorting After Interaction")]
     public int numberTarget;
@@ -17,15 +16,8 @@ public class DragDropAndSortingAfterInteraction : MonoBehaviour
     public GameObject otterIdle;
     public GameObject otterInteracted;
     public Transform logTarget;
-    
+    public Transform positionTemp;
     public Vector3 logTargetOffset;
-    public Vector3 positionTemp;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameManager = GameObject.Find("Background Script").GetComponent<DragDropAndSortingInGameManager>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -34,17 +26,14 @@ public class DragDropAndSortingAfterInteraction : MonoBehaviour
         {
             if (isChosen && !isDone)
             {
-                if (hand.isReady)
-                {
-                    gameManager.ScaleDownOtters(numberTarget);
+                gameManager.ScaleDownOtters(numberTarget);
 
-                    otterIdle.SetActive(false);
-                    otterInteracted.SetActive(true);
-                    transform.position = new Vector3(hand.transform.position.x,
-                                                     hand.transform.position.y,
-                                                     0);
-                    hand.isInteracting = false;
-                }
+                otterIdle.SetActive(false);
+                otterInteracted.SetActive(true);
+                transform.position = new Vector3(hand.transform.position.x,
+                                                 hand.transform.position.y,
+                                                 0);
+                hand.isInteracting = false;
             }
         }
         else
@@ -62,7 +51,7 @@ public class DragDropAndSortingAfterInteraction : MonoBehaviour
         {
             otterIdle.SetActive(true);
             otterInteracted.SetActive(false);
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(positionTemp.x, positionTemp.y, 0), moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, positionTemp.position, moveSpeed * Time.deltaTime);
         }
     }
 
@@ -71,13 +60,12 @@ public class DragDropAndSortingAfterInteraction : MonoBehaviour
         if (collision.CompareTag("Hand"))
         {
             hand = collision.GetComponent<HandController>();
-            if (hand.isInteracting)
-                isChosen = true;
+            isChosen = true;
         }
 
         if (collision.CompareTag("LogTarget"))
         {
-            if (!audioSource.isPlaying)
+            if (!gameManager.audioSource.isPlaying)
             {
                 gameManager.isReady = false;
                 hand.isInteracting = true;
@@ -86,14 +74,14 @@ public class DragDropAndSortingAfterInteraction : MonoBehaviour
                 {
                     isDone = true;
                     logTarget = collision.transform;
-                    audioSource.clip = gameManager.correctNumberSFX[numberTarget];
-                    audioSource.Play();
+                    gameManager.audioSource.clip = gameManager.correctNumberSFX[numberTarget];
+                    gameManager.audioSource.Play();
                 }
                 else
                 {
                     isChosen = false;
-                    audioSource.clip = gameManager.wrongNumberSFX;
-                    audioSource.Play();
+                    gameManager.audioSource.clip = gameManager.wrongNumberSFX;
+                    gameManager.audioSource.Play();
                 }
             }
         }
@@ -103,9 +91,8 @@ public class DragDropAndSortingAfterInteraction : MonoBehaviour
     {
         if (collision.CompareTag("Hand"))
         {
-            hand = collision.GetComponent<HandController>();
-            if (hand.isInteracting)
-                isChosen = false;
+            hand = null;
+            isChosen = false;
         }
     }
 }

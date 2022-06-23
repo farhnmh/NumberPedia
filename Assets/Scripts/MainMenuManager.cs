@@ -29,9 +29,6 @@ public class MainMenuManager : MonoBehaviour
     void Awake()
     {
         userManager = GameObject.Find("ImportantHandler").GetComponent<UserManager>();
-        sfxButtonClickedHandler = userManager.transform.GetChild(0).GetComponent<AudioSource>();
-        bgmHandler = userManager.transform.GetChild(1).GetComponent<AudioSource>();
-        
         bgmHandler.clip = bgmScene;
         bgmHandler.Play();
     }
