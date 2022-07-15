@@ -20,24 +20,12 @@ def SetupNotification(content, position):
     lblNotif.config(text=content)
     lblNotif.place(x=position)
 
-def StartExWebcam(index):
-    global cap, scaleSet, webcamStatus
-    cap = cv2.VideoCapture(index)
-
-    if int(trackingType.get()) == 1:
-        HandVisualizing()
-    elif int(trackingType.get()) == 2:
-        #BallColorVisualizing()
-        webcamStatus = False
-        exWebcamButton(True)
-        SetupNotification("Ball Tracking Feature Still Under Maintenance!", 130)
-
 def ValidationInputExWebcam():
     global webcamStatus
     if comboWebcam.get() != "Select Your Camera":
         for i in range(0, len(list_cam)):
             if comboWebcam.get() == list_cam[i]:
-                StartExWebcam(i)
+                HandVisualizing(i)
 
     else:
         webcamStatus = False
@@ -210,9 +198,10 @@ def BallColorVisualizing():
             exWebcamButton(True)
             break
 
-def HandVisualizing():
+def HandVisualizing(index):
     global cap, scaleSet, brightnessSet, contrastSet, webcamStatus
     
+    cap = cv2.VideoCapture(index)
     SetupNotification("Your Camera Opened. Setup It and Launch The Game!", 100)
     GeneralAttribute.isRun = True
     thread_sender = threading.Thread(target=UDPDataSender.SendingPacket)
@@ -352,7 +341,7 @@ GetListWebcam()
 
 root = Tk()
 root.title("NumberPedia")
-root.geometry("550x350")
+root.geometry("550x325")
 root.resizable(0, 0)
 root.tk.call('tk', 'scaling', 1.6)
 root.iconbitmap('Assets/logo_game.ico')
@@ -374,24 +363,11 @@ header2_font = Font(family=font_name, size=8)
 lblLogo = Label(root, image=img_logoNumberPedia)
 lblLogo.place(x=275 - img_logoNumberPedia.width() / 2, y=75 - img_logoNumberPedia.height() / 2)
 
-lblTracking = Label(root, text="Tracking Type", font=header1_font)
-lblTracking.place(x=35, y=150)
-
 lblWebcam = Label(root, text="Flipping Type", font=header1_font)
-lblWebcam.place(x=35, y=185)
+lblWebcam.place(x=35, y=150)
 
 lblWebcam = Label(root, text="External Webcam", font=header1_font)
-lblWebcam.place(x=35, y=220)
-
-#tracking type
-trackingType = IntVar()
-trackingType.set(1)
-
-trackingHand = Radiobutton(root, text="Hand Tracking", font=header2_font, variable=trackingType, value=1, image=img_handEmoji, compound='left')
-trackingHand.place(x=205, y=150)
-
-trackingBall = Radiobutton(root, text="Ball Tracking", font=header2_font, variable=trackingType, value=2, image=img_ballEmoji, compound='left')
-trackingBall.place(x=380, y=150)
+lblWebcam.place(x=35, y=185)
 
 #flip type
 isNormal = BooleanVar()
@@ -399,14 +375,14 @@ isVertical = BooleanVar()
 isHorizontal = BooleanVar()
 
 flipNormal = Checkbutton(root, text="Normal", font=header2_font, variable=isNormal, onvalue=True, offvalue=False)
-flipNormal.place(x=205, y=185)
+flipNormal.place(x=198, y=150)
 flipNormal.select()
 
 flipVertical = Checkbutton(root, text="Vertically", font=header2_font, variable=isVertical, onvalue=True, offvalue=False)
-flipVertical.place(x=285, y=185)
+flipVertical.place(x=285, y=150)
 
 flipHorizontal = Checkbutton(root, text="Horizontally", font=header2_font, variable=isHorizontal, onvalue=True, offvalue=False)
-flipHorizontal.place(x=380, y=185)
+flipHorizontal.place(x=380, y=150)
 
 #external cam
 def exWebcamButton(index):
@@ -440,14 +416,14 @@ def exWebcamButton(index):
 
 comboWebcam = ttk.Combobox(root, value=list_cam, height=0, width=20, font=header2_font, state="readonly")
 comboWebcam.set("Select Your Camera")
-comboWebcam.place(x=200, y=223)
+comboWebcam.place(x=200, y=188)
 root.option_add('*TCombobox*Listbox.font', header2_font) 
 
 lblExWebcam = Label(root, text="Start?", font=header2_font)
-lblExWebcam.place(x=400, y=222)
+lblExWebcam.place(x=400, y=187)
 
 btnExWebcam = Button(root, image=img_toggle_ex, border=0, command=lambda:exWebcamButton(False))
-btnExWebcam.place(x=465, y=228)
+btnExWebcam.place(x=465, y=192)
 
 #game
 def ThreadForGame():
@@ -466,10 +442,10 @@ def PlayTheGame():
     subprocess.call(cmd)
 
 btnLaunchGame = Button(root, image=img_launchGame, border=0, command=lambda:ThreadForGame())
-btnLaunchGame.place(x=275 - img_launchGame.width() / 2, y=275 - img_launchGame.height() / 2)
+btnLaunchGame.place(x=275 - img_launchGame.width() / 2, y=250 - img_launchGame.height() / 2)
 
 #notif
 lblNotif = Label(root, text="Setup and Start Webcam First! Then Launch The Game", fg="red", font= header2_font)
-lblNotif.place(x=105,y=300)
+lblNotif.place(x=105,y=275)
 
 root.mainloop()
